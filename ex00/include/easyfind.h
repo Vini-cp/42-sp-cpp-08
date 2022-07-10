@@ -12,7 +12,7 @@ class NotFound : public std::exception
 public:
     virtual const char* what() const throw()
     {
-        return ("Not found!");
+        return "Not found!";
     }
 };
 
