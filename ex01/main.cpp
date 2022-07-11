@@ -24,6 +24,27 @@ int main( void )
         std::cout << "=============================================" << std::endl << std::endl;
     }
     {
+        std::cout << "=============================================" << std::endl;
+        std::vector< int > lVector;
+
+        for ( int i = 0; i < 20; i++ )
+        {
+            lVector.push_back( i * i * i - i * i + i - 8 );
+        }
+
+        std::vector< int >::iterator lVectorBegin = lVector.begin();
+        std::vector< int >::iterator lVectorEnd = lVector.end();
+
+        Span sp( 20 );
+
+        sp.addNumber( lVectorBegin, lVectorEnd );
+
+        std::cout << sp.shortestSpan() << std::endl;
+        std::cout << sp.longestSpan() << std::endl;
+
+        std::cout << "=============================================" << std::endl << std::endl;
+    }
+    {
         std::cout << "=================== Empty ===================" << std::endl;
         
         Span sp;

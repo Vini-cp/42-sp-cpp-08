@@ -67,18 +67,30 @@ unsigned int Span::getFullSize( void ) const
 
 void Span::addNumber( int pNumber )
 {
-    if ( mVector.size() == mFullSize )
-        throw Span::SpanFull();
+    if ( mVector.size() == mFullSize ) throw Span::SpanFull();
 
     mVector.push_back( pNumber );
 }
 
 //------------------------------------------------------------------------------
 
+void Span::addNumber( std::vector< int >::iterator pBegin, std::vector< int >::iterator pEnd )
+{
+    while ( pBegin != pEnd )
+    {
+        if ( mVector.size() == mFullSize ) throw Span::SpanFull();
+        
+        mVector.push_back( *pBegin );
+
+        pBegin++;
+    }
+}
+
+//------------------------------------------------------------------------------
+
 int Span::shortestSpan( void ) const
 {
-    if ( mVector.size() < 2 )
-        throw Span::SpanHasFewMembers();
+    if ( mVector.size() < 2 ) throw Span::SpanHasFewMembers();
 
     std::vector< int > lSortedVector = mVector;
     std::sort( lSortedVector.begin(), lSortedVector.end() );
@@ -102,8 +114,7 @@ int Span::shortestSpan( void ) const
 
 int Span::longestSpan( void ) const
 {
-    if ( mVector.size() < 2 )
-        throw Span::SpanHasFewMembers();
+    if ( mVector.size() < 2 ) throw Span::SpanHasFewMembers();
 
     std::vector< int >::const_iterator lMaxValue = std::max_element( mVector.begin(), mVector.end() );
     std::vector< int >::const_iterator lMinValue = std::min_element( mVector.begin(), mVector.end() );

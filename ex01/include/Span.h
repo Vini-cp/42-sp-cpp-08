@@ -19,12 +19,18 @@ public:
     Span& operator=( const Span& prSpan );
 
     void addNumber( int pNumber );
+    void addNumber( std::vector< int >::iterator pBegin, std::vector< int >::iterator pEnd );
 
     int shortestSpan( void ) const;
     int longestSpan( void ) const;
 
     std::vector< int > getVector( void ) const;
     unsigned int getFullSize( void ) const;
+
+private:
+    std::vector< int > mVector;
+
+    unsigned int mFullSize;
 
     class SpanFull : public std::exception
     {
@@ -37,11 +43,6 @@ public:
     public:
         virtual const char* what( void ) const throw();
     };
-
-private:
-    std::vector< int > mVector;
-
-    unsigned int mFullSize;
 };
 
 #endif
